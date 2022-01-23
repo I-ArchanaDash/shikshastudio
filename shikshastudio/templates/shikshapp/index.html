@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/homestyle.css' %}">
+    <title>Home</title>
+
+    <!--font awesome cdn link-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <!--header section starts-->
+    <header class="header">
+        <nav>
+            <a href="#" class="logo">
+                <h1>
+                    <span class="logo-icon"><i class="fas fa-user-graduate"></i></span>
+                    <span class="shiksha">shiksha</span><span class="studio">studio</span>
+                </h1>
+            </a>
+        
+            <ul>
+                <li class="nav-item">
+                    <a href="#" class="nav-link" id="nav-link">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link" id="nav-link">About</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link" id="nav-link">Courses</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link" id="nav-link">Contact</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link" id="nav-link">Login</a>
+                </li>
+                
+            </ul>
+            <div class="hamburger" id="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </nav>
+    </header>
+
+    <!--header section ends-->
+
+    <section class="hero">
+        <div class="main-text">
+            <h1>
+                <span>India's Largest Learning Platform</span>
+            </h1>
+            <p>
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Voluptate quaerat eligendi architecto, porro accusantium autem voluptatibus pariatur excepturi dolor itaque!
+            </p>
+            <a class="btn" href="#">Get Started</a>
+        </div>
+        <div class="i-frame">
+            <iframe width="550" height="345" src="https://www.youtube.com/embed/fCgVD_uq1tk"allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture">
+            </iframe>
+        </div>
+    </section>
+
+
+
+
+
+
+
+
+
+
+
+    <!--costum js file link-->
+    <script src="{% static 'js/home.js' %"></script>
+</body>
+</html>
