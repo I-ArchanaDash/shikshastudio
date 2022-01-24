@@ -84,6 +84,8 @@ ul {
   gap: 1.9rem;
   max-width: 1000px;
   margin: 2rem auto -6rem;
+  height: 100%;
+  width:100%;
 }
 .btn{
     margin-top: 1rem;

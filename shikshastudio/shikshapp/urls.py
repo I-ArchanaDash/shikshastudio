@@ -9,4 +9,5 @@ urlpatterns = [
     path('teacher-login-validate/',views.teacherLoginValidate),
     path('teacher-login/',views.teacherLogin),
     path('teacher-logout/',views.teacherLogout),
+    path('add-work/',views.addWork),
 ]

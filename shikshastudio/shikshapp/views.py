@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from django.http import HttpResponse,HttpResponseRedirect
 from shikshapp import models
+from shikshapp.forms import worklistForm
+from shikshapp.models import worklist
 # Create your views here.
 
 def home(request):
@@ -54,5 +56,26 @@ def teacherLogout(request):
     return HttpResponseRedirect("http://localhost:8000/")
 @deco_login #checks logged in user
 def teacherDashboard(request):
-    response =render(request,'shikshapp/teacher_dashboard.html')
-    return response
+    if request.user.is_authenticated:
+        user = request.user
+        form = worklistForm()
+        worklists = worklist.objects.all()
+        response =render(request,'shikshapp/teacher_dashboard.html',context={'form' : form , 'worklists':worklists} )
+        return response
+@deco_login
+def addWork(request):
+    try:
+        username=request.POST['username']
+        print(username)
+    except:
+        pass
+    form = worklistForm(request.POST)
+    if form.is_valid():
+        print(form.cleaned_data)
+        worklist = form.save(commit=False)
+        worklist.username = username
+        worklist.save()
+        print(worklist)
+        return HttpResponseRedirect("http://localhost:8000/shikshapp/teacher-dashboard/")
+    else:
+        return render(request,'shikshapp/teacher_dashboard.html',context={'form' : form})
