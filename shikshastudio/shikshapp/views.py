@@ -10,13 +10,13 @@ def home(request):
     return response
 def deco_login(f1):
     def mod_f1(request):
-        if 'username' in request.session.keys():
+        if 'email' in request.session.keys():
             return f1(request)
         else:
             return HttpResponseRedirect("http://localhost:800/shikshapp/teacher-login/")
     return mod_f1
 def newTeacher(request):
-    error_msg="Username Already Taken"
+    error_msg="Email Already Taken"
     d={}
     try:
         if int(request.GET['err'])==1:
@@ -27,9 +27,9 @@ def newTeacher(request):
     return response
 def newTeacherRegistration(request):
     user=models.shikshapp_teachers()
-    user.username=request.POST['username']
+    user.email=request.POST['email']
     try:
-        user==models.shikshapp_teachers.objects.get(username=user.username)
+        user==models.shikshapp_teachers.objects.get(email=user.email)
         s="http://localhost:8000/shikshapp/new-teacher?err=1"
         return HttpResponseRedirect(s)
     except:
@@ -38,12 +38,12 @@ def newTeacherRegistration(request):
     user.save()
     return HttpResponseRedirect("http://localhost:8000/shikshapp/teacher-login")
 def teacherLoginValidate(request):
-    username=request.POST['username']
+    email=request.POST['email']
     password=request.POST['password']
     try:
-        user=models.shikshapp_teachers.objects.get(username=username,password=password)
+        user=models.shikshapp_teachers.objects.get(email=email,password=password)
         s="http://localhost:8000/shikshapp/teacher-dashboard/"
-        request.session['username']=username
+        request.session['email']=email
     except:
         s="http://localhost:8000/shikshapp/teacher-login/"
     return HttpResponseRedirect(s)
@@ -52,7 +52,7 @@ def teacherLogin(request):
     return response
 
 def teacherLogout(request):
-    del request.session['username']
+    del request.session['email']
     return HttpResponseRedirect("http://localhost:8000/")
 @deco_login #checks logged in user
 def teacherDashboard(request):
@@ -65,15 +65,15 @@ def teacherDashboard(request):
 @deco_login
 def addWork(request):
     try:
-        username=request.POST['username']
-        print(username)
+        username=request.POST['email']
+        print(email)
     except:
         pass
     form = worklistForm(request.POST)
     if form.is_valid():
         print(form.cleaned_data)
         worklist = form.save(commit=False)
-        worklist.username = username
+        worklist.email = email
         worklist.save()
         print(worklist)
         return HttpResponseRedirect("http://localhost:8000/shikshapp/teacher-dashboard/")

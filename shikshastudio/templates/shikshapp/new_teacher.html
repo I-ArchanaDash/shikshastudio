@@ -15,8 +15,8 @@
             {% csrf_token %}
             <table>
                 <tr>
-                    <td>Username</td>
-                    <td><input type="text" name="username"></td>
+                    <td>Email</td>
+                    <td><input type="email" name="email"></td>
                     {% if error_msg %}
                     <td>{{error_msg}}</td>
                     {% endif %}
